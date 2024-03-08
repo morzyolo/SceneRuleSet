@@ -1,0 +1,16 @@
+{
+    "name": "SceneRuleSet.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:322f8960f70952548bc7f9183c023195"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
