@@ -1,11 +1,9 @@
-#if UNITY_EDITOR
-
 using System.Collections.Generic;
-using SceneRuleSet.Source.Providers;
-using SceneRuleSet.Source.RuleSets;
+using SceneRuleSet.Core.Providers;
+using SceneRuleSet.Core.RuleSets;
 using UnityEngine;
 
-namespace SceneRuleSet.Context
+namespace SceneRuleSet.Core.Context
 {
     public class RuleSetContext : MonoBehaviour
     {
@@ -22,4 +20,3 @@ namespace SceneRuleSet.Context
         }
     }
 }
-#endif

@@ -1,6 +1,6 @@
-using SceneRuleSet.Source.Providers;
+using SceneRuleSet.Core.Providers;
 
-namespace SceneRuleSet.Source.RuleSets
+namespace SceneRuleSet.Core.RuleSets
 {
     public interface IRuleSet
     {

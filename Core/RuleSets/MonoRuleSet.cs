@@ -1,7 +1,7 @@
-using SceneRuleSet.Source.Providers;
+using SceneRuleSet.Core.Providers;
 using UnityEngine;
 
-namespace SceneRuleSet.Source.RuleSets
+namespace SceneRuleSet.Core.RuleSets
 {
     public abstract class MonoRuleSet : MonoBehaviour, IRuleSet
     {

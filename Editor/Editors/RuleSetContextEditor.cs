@@ -1,4 +1,4 @@
-using SceneRuleSet.Context;
+using SceneRuleSet.Core.Context;
 using UnityEditor;
 using UnityEngine;
 
