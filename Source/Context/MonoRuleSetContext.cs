@@ -1,11 +1,13 @@
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using SceneRuleSet.Source.Providers;
 using SceneRuleSet.Source.RuleSets;
 using UnityEngine;
 
-namespace SceneRuleSet.Source.RuleSetContexts
+namespace SceneRuleSet.Context
 {
-    public class MonoRuleSetContext : MonoBehaviour
+    public class RuleSetContext : MonoBehaviour
     {
         [SerializeField] private List<MonoRuleSet> _ruleSets = new();
 
@@ -20,3 +22,4 @@ namespace SceneRuleSet.Source.RuleSetContexts
         }
     }
 }
+#endif
