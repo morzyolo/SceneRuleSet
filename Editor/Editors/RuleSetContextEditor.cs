@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using SceneRuleSet.Core.Context;
 using UnityEditor;
 using UnityEngine;
@@ -23,3 +25,4 @@ namespace SceneRuleSet.Editors
         }
     }
 }
+#endif
