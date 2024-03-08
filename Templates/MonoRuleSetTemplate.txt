@@ -1,0 +1,9 @@
+using SceneRuleSet.Core.Providers;
+using SceneRuleSet.Core.RuleSets;
+
+public class %RULE_SET_NAME% : MonoRuleSet
+{
+    public override void ApplyTo(ObjectProvider provider)
+    {
+    }
+}
