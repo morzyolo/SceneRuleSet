@@ -2,20 +2,24 @@
 
 using SceneRuleSet.Core.Constants;
 using SceneRuleSet.Core.Context;
+using SceneRuleSet.EditorWindows;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SceneRuleSet.EditorItems
 {
     public static class MenuItems
     {
         private const string EditorOnlyTag = "EditorOnly";
+        private const string RuleSetContextInvokerWindowName = "Rule Set Invoker";
 
         private const string DefaultMonoRuleSetFileName = "MonoRuleSetTemplate.txt";
+        private const string DefaultNewRuleSetFileName = "DefaultRuleSet.cs";
 
         [MenuItem("GameObject/SceneRuleSet/Rule Set Context", false, 12)]
-        public static void CreateSceneRuleSet()
+        public static void CreateRuleSetContext()
         {
             GameObject contextObject = new(nameof(RuleSetContext)) {
                 tag = EditorOnlyTag
@@ -23,7 +27,7 @@ namespace SceneRuleSet.EditorItems
             var context = contextObject.AddComponent<RuleSetContext>();
 
             Selection.activeGameObject = context.gameObject;
-            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 
         [MenuItem("Assets/Create/SceneRuleSet/Mono Rule Set", false, 1)]
@@ -31,7 +35,14 @@ namespace SceneRuleSet.EditorItems
         {
             string path = $"{PathConstants.PathToTemplates}/{DefaultMonoRuleSetFileName}";
 
-            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(path, "DefaultRuleSet.cs");
+            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(path, DefaultNewRuleSetFileName);
+        }
+
+        [MenuItem("Window/Rule Set Invoker")]
+        public static void OpenRuleSetContextInvoker()
+        {
+            EditorWindow window = EditorWindow.GetWindow<RuleSetContextInvokerWindow>();
+            window.titleContent = new GUIContent(RuleSetContextInvokerWindowName);
         }
     }
 }
