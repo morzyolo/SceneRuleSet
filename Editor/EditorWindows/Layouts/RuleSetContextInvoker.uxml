@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/SceneRuleSet/SceneRuleSet/Editor/EditorWindows/Layouts/StylesSheets/RuleSetContextInvokerStyleSheet.uss?fileID=7433441132597879392&amp;guid=dbf8e762a59dcaf4ea5154847ce6aafc&amp;type=3#RuleSetContextInvokerStyleSheet" />
+    <ui:ScrollView>
+        <ui:VisualElement name="SceneFolderElement" class="visual-element-border" style="align-items: stretch; justify-content: flex-start; align-self: stretch; min-height: initial;">
+            <ui:TextField label="Scene Folder" value="Assets" password="false" is-delayed="true" name="FolderTextField" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            <ui:Button text="Refresh Scene List" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RefreshSceneListButton" enable-rich-text="true" class="button-radius" style="margin-top: 5px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="visual-element-border" style="align-items: stretch; justify-content: flex-start; flex-direction: column; align-self: stretch; flex-wrap: nowrap;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; align-items: flex-start;">
+                <ui:Label tabindex="-1" text="Scene List" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SceneListLabel" />
+                <ui:Button text="Apply All" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ApplyAllRuleSetsButton" class="button-radius" />
+            </ui:VisualElement>
+            <ui:ListView focusable="true" name="SceneListView" style="margin-top: 5px;" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>
