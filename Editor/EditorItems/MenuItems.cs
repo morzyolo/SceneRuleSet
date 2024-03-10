@@ -43,6 +43,7 @@ namespace SceneRuleSet.EditorItems
         {
             EditorWindow window = EditorWindow.GetWindow<RuleSetContextInvokerWindow>();
             window.titleContent = new GUIContent(RuleSetContextInvokerWindowName);
+            window.minSize = new Vector2(280, 140);
         }
     }
 }
