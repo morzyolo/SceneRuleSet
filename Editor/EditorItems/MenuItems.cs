@@ -21,10 +21,10 @@ namespace SceneRuleSet.EditorItems
         [MenuItem("GameObject/SceneRuleSet/Rule Set Context", false, 12)]
         public static void CreateRuleSetContext()
         {
-            GameObject contextObject = new(nameof(RuleSetContext)) {
+            GameObject contextObject = new(nameof(MonoRuleSetContext)) {
                 tag = EditorOnlyTag
             };
-            var context = contextObject.AddComponent<RuleSetContext>();
+            var context = contextObject.AddComponent<MonoRuleSetContext>();
 
             Selection.activeGameObject = context.gameObject;
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());

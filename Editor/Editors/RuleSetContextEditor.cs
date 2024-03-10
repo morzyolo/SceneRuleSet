@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SceneRuleSet.Editors
 {
-    [CustomEditor(typeof(RuleSetContext))]
+    [CustomEditor(typeof(MonoRuleSetContext))]
     public class RuleSetContextEditor : Editor
     {
         private const string ButtonText = "Apply Rules";
@@ -19,7 +19,7 @@ namespace SceneRuleSet.Editors
 
             if (GUILayout.Button(ButtonText))
             {
-                RuleSetContext context = (RuleSetContext)target;
+                MonoRuleSetContext context = (MonoRuleSetContext)target;
                 context.ApplyRules();
             }
         }

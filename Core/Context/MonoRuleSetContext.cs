@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SceneRuleSet.Core.Context
 {
-    public class RuleSetContext : MonoBehaviour
+    public class MonoRuleSetContext : MonoBehaviour
     {
         [SerializeField] private List<MonoRuleSet> _ruleSets = new();
 
