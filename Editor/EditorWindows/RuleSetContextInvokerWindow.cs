@@ -13,7 +13,8 @@ namespace SceneRuleSet.EditorWindows
         [SerializeField] private VisualTreeAsset _tree;
         [SerializeField] private VisualTreeAsset _sceneElement;
 
-        private readonly List<SceneElement> _scenes = new();
+        private List<SceneElement> _currentScenes;
+        private List<SceneElement> _oldScenes;
 
         private TextField _folderTextField;
         private Button _refreshSceneListButton;
@@ -53,7 +54,7 @@ namespace SceneRuleSet.EditorWindows
             _applyAllRuleSetsButton = rootVisualElement.Q<Button>("ApplyAllRuleSetsButton");
             _sceneListView = rootVisualElement.Q<ListView>("SceneListView");
 
-            _sceneListView.itemsSource = _scenes;
+            _sceneListView.itemsSource = _currentScenes;
             _sceneListView.makeItem = CreateNewSceneElement;
 
             _sceneListView.bindItem = BindSceneElement;
@@ -68,38 +69,36 @@ namespace SceneRuleSet.EditorWindows
 
         private void BindSceneElement(VisualElement element, int index)
         {
-            _scenes[index].Bind(element);
+            _currentScenes[index].Bind(element);
         }
 
         private void UnbindSceneElement(VisualElement element, int index)
         {
-            _scenes[index].Unbind(element);
+            _oldScenes[index].Unbind(element);
         }
 
         private void RefreshSceneList(ClickEvent clickEvent = null)
         {
-            _sceneListView.Clear();
-            _sceneListView.Rebuild();
-
-            _scenes.Clear();
-
             string folderPath = _folderTextField.value;
 
             string[] sceneGUIDs = AssetDatabase.FindAssets("t:Scene", new[] { folderPath });
             string[] scenePaths = sceneGUIDs.Select(AssetDatabase.GUIDToAssetPath).ToArray();
 
+            _oldScenes = _currentScenes;
+            _currentScenes = new(scenePaths.Length);
+
             foreach (string path in scenePaths)
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(path);
-                _scenes.Add(new SceneElement(sceneAsset, path));
+                _currentScenes.Add(new SceneElement(sceneAsset, path));
             }
 
-            _sceneListView.Rebuild();
+            _sceneListView.itemsSource = _currentScenes;
         }
 
         private void ApplyAllRuleSets(ClickEvent evt)
         {
-            foreach (SceneElement element in _scenes)
+            foreach (SceneElement element in _currentScenes)
             {
                 element.ApplyRuleSet();
             }
