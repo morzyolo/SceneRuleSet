@@ -11,7 +11,6 @@ namespace SceneRuleSet.Core.Context
 
         public void ApplyRules()
         {
-            ObjectProvider provider = new();
             ObjectProvider provider = new(gameObject.scene);
 
             foreach (var ruleSet in _ruleSets)
