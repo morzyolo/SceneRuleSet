@@ -1,3 +1,7 @@
+#nullable enable
+
+using SceneRuleSet.Core.Context;
+using SceneRuleSet.Core.Extensions;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,11 +35,26 @@ namespace SceneRuleSet.EditorWindows
             applyButton.UnregisterCallback<ClickEvent>(ApplyRuleSet);
         }
 
-        public void ApplyRuleSet() => ApplyRuleSet(null);
+        public void ApplyRuleSet(ClickEvent clickEvent) => ApplyRuleSet();
 
-        private void ApplyRuleSet(ClickEvent clickEvent)
+        public void ApplyRuleSet()
         {
+            Scene scene = EditorSceneManager.OpenScene(_path, OpenSceneMode.Additive);
 
+            GameObject[] roots = scene.GetRootGameObjects();
+
+            var context = roots.Get<MonoRuleSetContext>();
+
+            if (context is null)
+            {
+                Debug.LogWarning($"The \"{scene.name}\" does not contain a RuleSetContext");
+                return;
+            }
+
+            context.ApplyRules();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
         }
 
         private void Renamelabel(VisualElement element, string labelName, string text)
