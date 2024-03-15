@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,18 +7,18 @@ namespace SceneRuleSet.EditorWindows
 {
     public sealed class SceneElement
     {
-        private readonly SceneAsset _sceneAsset;
+        private readonly string _name;
         private readonly string _path;
 
-        public SceneElement(SceneAsset sceneAsset, string path)
+        public SceneElement(string name, string path)
         {
-            _sceneAsset = sceneAsset;
+            _name = name;
             _path = path;
         }
 
         public void Bind(VisualElement element)
         {
-            Renamelabel(element, "SceneName", _sceneAsset.name);
+            Renamelabel(element, "SceneName", _name);
             Renamelabel(element, "ScenePath", _path);
 
             Button applyButton = element.Q<Button>("ApplyRuleSetButton");

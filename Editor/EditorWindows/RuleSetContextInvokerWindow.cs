@@ -90,7 +90,7 @@ namespace SceneRuleSet.EditorWindows
             foreach (string path in scenePaths)
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(path);
-                _currentScenes.Add(new SceneElement(sceneAsset, path));
+                _currentScenes.Add(new SceneElement(sceneAsset.name, path));
             }
 
             _sceneListView.itemsSource = _currentScenes;
