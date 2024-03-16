@@ -1,0 +1,56 @@
+name: BuildAndRelease
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag"
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneLinux64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: SceneRuleSet.${{ env.GIT_TAG }}.unitypackage
+          path: ./SceneRuleSet.${{ env.GIT_TAG}}.unitypackage
+  
+  release:
+    needs: build
+    runs-on: ubunty-latest
+    timeout-minutes: 10
+    steps:
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.GIT_TAG }}
+          release_name: ${{ env.GIT_TAG }}
+          draft: true
+          prerelease: false
+
+      - uses: actions/download-artifact@v2
+
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./SceneRuleSet.${{ env.GIT_TAG }}.unitypackage/SceneRuleSet.${{ env.GIT_TAG }}.unitypackage
+          asset_name: SceneRuleSet.${{ env.GIT_TAG }}.unitypackage
+          asset_content_type: application/octet-stream

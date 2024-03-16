@@ -57,6 +57,8 @@ namespace SceneRuleSet.EditorWindows
 
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveScene(scene);
+
+                Debug.Log($"Set of rules was applied to the {scene.name}.");
             }
 
             if (!isValid)
