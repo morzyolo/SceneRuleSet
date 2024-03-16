@@ -1,0 +1,12 @@
+{
+	"name": "com.morzyolo.sceneruleset",
+	"displayName": "Scene Rule Set",
+	"author": {
+		"name": "morzyolo"
+	},
+	"documentationUrl": "https://github.com/morzyolo/SceneRuleSet",
+	"version": "1.0.0",
+	"unity": "2019.1",
+	"license": "MIT",
+	"keywords": [ "scene rule set", "rule set" ]
+}
