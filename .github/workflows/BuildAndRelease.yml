@@ -31,11 +31,12 @@ jobs:
         with:
           targetPlatform: StandaloneLinux64
           unityVersion: ${{ matrix.unity }}
+          buildMethod: PackageExporter.Export
 
       - uses: actions/upload-artifact@v2
         with:
           name: SceneRuleSet.${{ env.GIT_TAG }}.unitypackage
-          path: ${{ env.GIT_TAG}}.unitypackage
+          path: SceneRuleSet.${{ env.GIT_TAG }}.unitypackage
   
   release:
     needs: build
