@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace SceneRuleSet.Core.Extensions
 {
-    public static class GetExtension
+    public static class FindExtension
     {
-        public static TType Get<TType>(this GameObject[] gameObjects) where TType : Component
+        public static TType FindOrDefault<TType>(this GameObject[] gameObjects) where TType : Component
         {
             Queue<Transform> transformQueue = gameObjects.ToTransformQueue();
 
@@ -22,7 +22,7 @@ namespace SceneRuleSet.Core.Extensions
             return default;
         }
 
-        public static List<TType> GetListOf<TType>(this GameObject[] gameObjects) where TType : Component
+        public static List<TType> FindListOf<TType>(this GameObject[] gameObjects) where TType : Component
         {
             Queue<Transform> transformQueue = gameObjects.ToTransformQueue();
             List<TType> result = new();

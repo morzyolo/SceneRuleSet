@@ -43,7 +43,7 @@ namespace SceneRuleSet.EditorWindows
 
             GameObject[] roots = scene.GetRootGameObjects();
 
-            var context = roots.Get<MonoRuleSetContext>();
+            var context = roots.FindOrDefault<MonoRuleSetContext>();
 
             if (context is null)
             {
