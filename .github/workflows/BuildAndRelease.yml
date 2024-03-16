@@ -9,6 +9,10 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        unity: ["2019.3.9f1"]
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,6 +26,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneLinux64
+          unityVersion: ${{ matrix.unity }}
 
       - uses: actions/upload-artifact@v2
         with:
