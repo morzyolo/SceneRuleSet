@@ -1,5 +1,7 @@
 #nullable enable
 
+using System.Collections.Generic;
+using System.Linq;
 using SceneRuleSet.Core.Context;
 using SceneRuleSet.Core.Extensions;
 using UnityEditor.SceneManagement;
@@ -42,9 +44,7 @@ namespace SceneRuleSet.EditorWindows
             bool isValid = IsValidScene(_path);
 
             Scene scene = EditorSceneManager.OpenScene(_path, OpenSceneMode.Additive);
-
-            GameObject[] roots = scene.GetRootGameObjects();
-
+            List<GameObject> roots = scene.GetRootGameObjects().ToList();
             var context = roots.FindOrDefault<MonoRuleSetContext>();
 
             if (context is null)

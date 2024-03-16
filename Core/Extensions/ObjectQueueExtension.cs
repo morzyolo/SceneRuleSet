@@ -5,7 +5,7 @@ namespace SceneRuleSet.Core.Extensions
 {
     public static class ObjectQueueExtension
     {
-        public static Queue<Transform> ToTransformQueue(this GameObject[] gameObjects)
+        public static Queue<Transform> ToTransformQueue(this List<GameObject> gameObjects)
         {
             Queue<Transform> transfromQueue = new();
 
