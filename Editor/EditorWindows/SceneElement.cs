@@ -39,6 +39,8 @@ namespace SceneRuleSet.EditorWindows
 
         public void ApplyRuleSet()
         {
+            bool isValid = IsValidScene(_path);
+
             Scene scene = EditorSceneManager.OpenScene(_path, OpenSceneMode.Additive);
 
             GameObject[] roots = scene.GetRootGameObjects();
@@ -48,13 +50,23 @@ namespace SceneRuleSet.EditorWindows
             if (context is null)
             {
                 Debug.LogWarning($"The \"{scene.name}\" does not contain a RuleSetContext");
-                return;
+            }
+            else
+            {
+                context.ApplyRules();
+
+                EditorSceneManager.MarkSceneDirty(scene);
+                EditorSceneManager.SaveScene(scene);
             }
 
-            context.ApplyRules();
+            if (!isValid)
+                EditorSceneManager.CloseScene(scene, true);
+        }
 
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene);
+        private bool IsValidScene(string path)
+        {
+            Scene scene = SceneManager.GetSceneByPath(path);
+            return scene.IsValid();
         }
 
         private void Renamelabel(VisualElement element, string labelName, string text)
