@@ -7,6 +7,10 @@ on:
         description: "Tag"
         required: true
 
+env:
+  GIT_TAG: ${{ github.event.inputs.tag }}
+  DRY_RUN: ${{ github.event.inputs.dry-run }}
+
 jobs:
   build:
     strategy:
