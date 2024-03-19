@@ -31,7 +31,7 @@ jobs:
         with:
           targetPlatform: StandaloneLinux64
           unityVersion: ${{ matrix.unity }}
-          buildMethod: PackageExporter.Export
+          buildMethod: Builder.Packager.Export
 
       - uses: actions/upload-artifact@v2
         with:
