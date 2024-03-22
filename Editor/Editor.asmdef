@@ -1,5 +1,5 @@
 {
-    "name": "SceneRuleSet.Editor",
+    "name": "Editor",
     "rootNamespace": "",
     "references": [
         "GUID:322f8960f70952548bc7f9183c023195"
