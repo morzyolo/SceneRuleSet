@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public static class Packager
+public class Packager
 {
     private const string s_root = "SceneRuleSet/SceneRuleSet";
 
