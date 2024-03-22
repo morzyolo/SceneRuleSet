@@ -1,5 +1,3 @@
-#if UNITY_EDITOR
-
 using SceneRuleSet.Core.Constants;
 using SceneRuleSet.Core.Context;
 using SceneRuleSet.EditorWindows;
@@ -47,4 +45,3 @@ namespace SceneRuleSet.EditorItems
         }
     }
 }
-#endif
